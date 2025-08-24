@@ -33,10 +33,14 @@ k3d-k3s-default-tools                     k3s-default   running
 
 4. Check node status using kubectl
 
-`kubectl get no`
+`kubectl get nodes`
 
+5. Check cluster-info
 
-5. close k3d cluster and remove all nodes
+`kubectl cluster-info`
+>> 
+
+6. close k3d cluster and remove all nodes
 
 ```
 k3d cluster stop
@@ -45,7 +49,21 @@ k3d cluster delete --all
 
 # Run a docker image on k3d nodes
 
+# Debug inside a k3d node 
 
+
+
+## check images of node `f7b8653d1695`
+
+`docker exec -it f7b8653d1695 crictl images`
+
+## check pods of node `f7b8653d1695`
+
+`docker exec -it f7b8653d1695 crictl pods`
+
+## check containers of node `f7b8653d1695`
+
+`docker exec -it f7b8653d1695 crictl ps -a`
 
 # Reference: 
 
