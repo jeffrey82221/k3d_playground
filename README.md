@@ -47,6 +47,12 @@ k3d cluster stop
 k3d cluster delete --all
 ```
 
+7. start new pod with a image
+
+```
+kubectl run nginx --image=nginx
+```
+
 # Run a docker image on k3d nodes
 
 # Debug inside a k3d node 
