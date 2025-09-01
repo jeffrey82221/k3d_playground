@@ -5,6 +5,15 @@ Study using Helm Chart to Deploy Services onto K8S (simulated by K3D)
 # Installation 
 
 `brew install k3d`
+`brew install helm`
+
+# Install Helm Cert-manager
+
+```
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+```
+
 
 # Start K3D cluster 
 
@@ -26,38 +35,41 @@ k3d-k3s-default-serverlb   loadbalancer   k3s-default   running
 k3d-k3s-default-tools                     k3s-default   running
 ```
 
-
-3. Switch to context 
-
-`kubectl config use-context k3d-k3s-default`
-
-4. Check node status using kubectl
-
-`kubectl get nodes`
-
-5. Check cluster-info
-
-`kubectl cluster-info`
->> 
-
-6. close k3d cluster and remove all nodes
+3. close k3d cluster and remove all nodes
 
 ```
 k3d cluster stop
 k3d cluster delete --all
 ```
 
-7. start new pod with a image
+# Interact with K8S using KubeCTL 
+
+1. Switch to context 
+
+`kubectl config use-context k3d-k3s-default`
+
+2. Check node status using kubectl
+
+`kubectl get nodes`
+
+3. Check cluster-info
+
+`kubectl cluster-info`
+>> 
+
+4. start new pod with a image
 
 ```
 kubectl run nginx --image=nginx
 ```
 
-# Run a docker image on k3d nodes
+5. check detail info of a pod
 
-# Debug inside a k3d node 
+```
+kubectl describe pod <pod-name>
+```
 
-
+# Debugging within K8S node using crictl
 
 ## check images of node `f7b8653d1695`
 
@@ -74,3 +86,5 @@ kubectl run nginx --image=nginx
 # Reference: 
 
 https://barry-cheng.medium.com/雲端工程師在k3d上的初體驗-c2d92a37c09f
+
+https://learn.kodekloud.com/user/courses/udemy-labs-certified-kubernetes-administrator-with-practice-tests/module/e6ae2f68-9b3a-439e-a534-d63d372840d2/lesson/5c388f3e-bd27-41bd-9c3c-613dafc29bf9?utm_source=udemy&utm_medium=labs&utm_campaign=kubernetes

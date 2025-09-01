@@ -1,0 +1,109 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2025-09-01T13:36:06Z"
+  labels:
+    run: nginx
+  name: nginx
+  namespace: default
+  resourceVersion: "1444"
+  uid: 5148301a-59a5-4554-894d-fd28ff70b064
+spec:
+  containers:
+  - image: nginx
+    imagePullPolicy: Always
+    name: nginx
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-nk29b
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: k3d-k3s-default-server-2
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-nk29b
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-01T13:36:20Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-01T13:36:06Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-01T13:36:20Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-01T13:36:20Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-09-01T13:36:06Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://4886e9fbe1d55786ddf8472942ea1c43582a3034971432c273ea6d7825ff51d6
+    image: docker.io/library/nginx:latest
+    imageID: docker.io/library/nginx@sha256:33e0bbc7ca9ecf108140af6288c7c9d1ecc77548cbfd3952fd8466a75edefe57
+    lastState: {}
+    name: nginx
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-09-01T13:36:20Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-nk29b
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.22.0.5
+  hostIPs:
+  - ip: 172.22.0.5
+  phase: Running
+  podIP: 10.42.2.3
+  podIPs:
+  - ip: 10.42.2.3
+  qosClass: BestEffort
+  startTime: "2025-09-01T13:36:06Z"
