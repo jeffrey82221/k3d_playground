@@ -83,8 +83,16 @@ kubectl describe pod <pod-name>
 
 `docker exec -it f7b8653d1695 crictl ps -a`
 
+## check pods in kubesystem namespace
+
+`kubectl get pods --namespace=kube-system`
+
 # Reference: 
 
 https://barry-cheng.medium.com/雲端工程師在k3d上的初體驗-c2d92a37c09f
 
 https://learn.kodekloud.com/user/courses/udemy-labs-certified-kubernetes-administrator-with-practice-tests/module/e6ae2f68-9b3a-439e-a534-d63d372840d2/lesson/5c388f3e-bd27-41bd-9c3c-613dafc29bf9?utm_source=udemy&utm_medium=labs&utm_campaign=kubernetes
+
+# DNS of a service in K8S
+
+<service_name>.<namespace>.<service>.cluster.local
