@@ -7,7 +7,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY producer.py .
+COPY test.py .
 
 # Run the producer
-CMD ["python", "producer.py"]
+# Use -u flag for unbuffered output
+CMD ["python", "-u", "test.py"]

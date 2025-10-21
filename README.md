@@ -19,7 +19,7 @@ helm repo update
 
 1. Create a cluster with 3 nodes 
 
-`k3d cluster create -s 3`
+`k3d cluster create -s 3 --registry-create mycluster-registry:6002`
 
 2. Check cluster nodes
 
