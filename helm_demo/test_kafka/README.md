@@ -24,7 +24,7 @@ NOTES:
     kafka-1-broker-0.kafka-1-headless.default.svc.cluster.local:9092
 ```
 
-### Advance: 
+### [Advance](https://artifacthub.io/packages/helm/kafka/kafka/13.2.0)
 
 #### One controller and one broker
 
