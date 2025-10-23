@@ -9,9 +9,7 @@ logger = logging.getLogger(__name__)
 
 class KafkaMessageConsumer:
     def __init__(self):
-        self.bootstrap_servers = [
-            'kafka-1-broker-0.kafka-1-headless.default.svc.cluster.local:9092'
-        ]
+        self.bootstrap_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
         self.topic = os.getenv('KAFKA_TOPIC', 'test-topic')
         self.group_id = os.getenv('CONSUMER_GROUP_ID', 'test-consumer-group')
         

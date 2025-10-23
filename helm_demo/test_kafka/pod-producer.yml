@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-producer-pod
+  labels: # You can add your own keys for labels here
+    app: test
+spec:
+  containers:
+    - name: test-producer
+      image: mycluster-registry:5000/jeffrey82221/test_kafka:v0.0.11
+      command: ["python", "-u", "producer.py"]
+      env:
+        - name: KAFKA_TOPIC
+          value: "test-topic"
+        - name: KAFKA_BOOTSTRAP_SERVERS
+          value: "kafka-1-broker-0.kafka-1-headless.default.svc.cluster.local:9092"
+      # Find the ip via the command: ipconfig getifaddr en0
+      # Check if the image exists via `curl http://172.20.10.2:6001/v2/_catalog`
+      imagePullPolicy: IfNotPresent

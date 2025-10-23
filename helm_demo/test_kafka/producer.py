@@ -11,9 +11,7 @@ logger = logging.getLogger(__name__)
 
 class KafkaMessageProducer:
     def __init__(self):
-        self.bootstrap_servers = [
-            'kafka-1-broker-0.kafka-1-headless.default.svc.cluster.local:9092'
-        ]
+        self.bootstrap_servers = os.getenv('KAFKA_BOOTSTRAP_SERVERS', 'localhost:9092')
         self.topic = os.getenv('KAFKA_TOPIC', 'test-topic')
         # Initialize producer with configuration
         self.producer = KafkaProducer(
